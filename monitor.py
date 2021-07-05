@@ -21,7 +21,7 @@ configParser = configparser.ConfigParser()
 
 mySoilSensor = qwiic_soil_moisture_sensor.QwiicSoilMoistureSensor()
 serialPort = serial.Serial(
- port='/dev/ttyUSB0',
+ port='/dev/ttyACM0',
  baudrate = 9600,
  parity=serial.PARITY_NONE,
  stopbits=serial.STOPBITS_ONE,
