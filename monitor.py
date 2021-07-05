@@ -34,9 +34,9 @@ write_api = client.write_api(write_options=SYNCHRONOUS)
 
 def initSoilMoistureSensor():
     if mySoilSensor.is_connected == False:
-    		print("The Qwiic Soil Moisture Sensor device isn't connected to the system. Please check your connection", \
-			file=sys.stderr)
-		return
+        print("The Qwiic Soil Moisture Sensor device isn't connected to the system. Please check your connection", \
+        file=sys.stderr)
+        return
 
     mySoilSensor.begin()
 
