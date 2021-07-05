@@ -44,9 +44,9 @@ if __name__ == '__main__':
     try:
         initSoilMoistureSensor()
         while True:
-            soil_temperature = serialPort.readline(1)
+            soil_temperature = serialPort.readline()
             # throw away leftovers
-            serialPort.reset_input_buffer()
+            #serialPort.reset_input_buffer()
             print(soil_temperature)
 
             mySoilSensor.read_moisture_level()
