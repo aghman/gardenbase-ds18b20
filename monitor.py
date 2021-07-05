@@ -11,10 +11,10 @@ from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
 # You can generate a Token from the "Tokens Tab" in the UI
-token = "U6weeGnzUsmhiALh2pZl-1NmK6HishVa9IidtuL1o12MGC4HgKu23Iot_Ow5qFLH_kIG3Pd2ga_T1QKvFPM4NA=="
+token = "hEwSGkJMW1Nua6jfNL3q63IlUB2hgUWjfcorFQsw9cwUbKSepzwbZUgLgj3uSAz2oQXxHMcra61gWf2PT1DBgA=="
 org = "home"
-bucket = "environmental"
-location = "change_me"
+bucket = "garden"
+location = "garden-base-beta"
 
 
 configParser = ConfigParser.RawConfigParser()
