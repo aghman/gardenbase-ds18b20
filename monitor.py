@@ -17,7 +17,7 @@ bucket = "garden"
 location = "garden-base-beta"
 
 
-configParser = ConfigParser.RawConfigParser()
+configParser = configparser.ConfigParser()
 
 mySoilSensor = qwiic_soil_moisture_sensor.QwiicSoilMoistureSensor()
 serialPort = serial.Serial(
