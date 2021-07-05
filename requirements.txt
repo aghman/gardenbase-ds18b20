@@ -1,0 +1,2 @@
+sparkfun-qwiic-soil-moisture-sensor
+influxdb-client
