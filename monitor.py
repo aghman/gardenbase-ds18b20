@@ -50,13 +50,13 @@ if __name__ == '__main__':
                         if nextDataType == "SM":
                             moist_point = Point("soil_moisture")\
                                 .tag("deviceLocation", location)\
-                                .field("value", iPart)\
+                                .field("value", int(iPart))\
                                 .time(datetime.utcnow(), WritePrecision.NS)
                             write_api.write(bucket, org, moist_point) 
                         elif nextDataType == "SM": 
                             temp_point = Point("soil_temp")\
                                 .tag("deviceLocation", location)\
-                                .field("value", iPart)\
+                                .field("value", float(iPart))\
                                 .time(datetime.utcnow(), WritePrecision.NS)
                             write_api.write(bucket, org, temp_point) 
 
