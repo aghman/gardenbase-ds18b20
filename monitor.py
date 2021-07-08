@@ -38,6 +38,8 @@ if __name__ == '__main__':
             soil_temperature = soil_temperature.replace("\r\n'","")
             if soil_temperature:
                 print(soil_temperature)
+                temp_parts = soil_temperature.split(":")
+                print(temp_parts)
 
             #moist_point = Point("soil_moisture")\
             #    .tag("deviceLocation", location)\
