@@ -35,7 +35,7 @@ if __name__ == '__main__':
         while True:
             soil_temperature = serialPort.readline().decode('utf-8')
             soil_temperature = soil_temperature.replace("b'","")
-            soil_temperature = soil_temperature.replace("\r\n'","")
+            soil_temperature = soil_temperature.replace("\r\n","")
             if soil_temperature:
                 print(soil_temperature)
                 temp_parts = soil_temperature.split(":")
