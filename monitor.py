@@ -17,6 +17,7 @@ location = "garden-base-beta"
 
 
 configParser = configparser.ConfigParser()
+nextDataType = ""
 
 serialPort = serial.Serial(
  port='/dev/ttyACM0',
@@ -40,15 +41,25 @@ if __name__ == '__main__':
                 print(soil_temperature)
                 temp_parts = soil_temperature.split(":")
                 print(temp_parts)
+                for iPart in temp_parts:
+                    if iPart == "SM":
+                        nextDataType = iPart
+                    elif iPart == "TF":
+                        nextDataType = iPart
+                    else: #data
+                        if nextDataType == "SM":
+                            moist_point = Point("soil_moisture")\
+                                .tag("deviceLocation", location)\
+                                .field("value", iPart)\
+                                .time(datetime.utcnow(), WritePrecision.NS)
+                            write_api.write(bucket, org, moist_point) 
+                        elif nextDataType == "SM": 
+                            temp_point = Point("soil_temp")\
+                                .tag("deviceLocation", location)\
+                                .field("value", iPart)\
+                                .time(datetime.utcnow(), WritePrecision.NS)
+                            write_api.write(bucket, org, temp_point) 
 
-            #moist_point = Point("soil_moisture")\
-            #    .tag("deviceLocation", location)\
-            #    .field("value", soil_moisture)\
-            #    .time(datetime.utcnow(), WritePrecision.NS)
-            #soiltemp_point = Point("soil_temperature")\
-            #    .tag("deviceLocation", location)\
-            #    .field("tempF", soil_temperature)\
-            #    .time(datetime.utcnow(), WritePrecision.NS)
             time.sleep(1)
 
     except (KeyboardInterrupt, SystemExit) as exErr:
