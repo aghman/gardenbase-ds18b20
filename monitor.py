@@ -34,6 +34,9 @@ if __name__ == '__main__':
     try:
         while True:
             soil_temperature = serialPort.readline()
+            soil_temperature = soil_temperature.replace("b'","")
+            soil_temperature = soil_temperature.replace("\r\n'","")
+ 
             print(soil_temperature)
 
             #moist_point = Point("soil_moisture")\
@@ -47,5 +50,5 @@ if __name__ == '__main__':
             time.sleep(1)
 
     except (KeyboardInterrupt, SystemExit) as exErr:
-        print("\nEnding Example 1")
+        print("\nShutting down gardenbase-snakeberry...")
         sys.exit(0)
