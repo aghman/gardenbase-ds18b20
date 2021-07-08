@@ -53,7 +53,7 @@ if __name__ == '__main__':
                                 .field("value", int(iPart))\
                                 .time(datetime.utcnow(), WritePrecision.NS)
                             write_api.write(bucket, org, moist_point) 
-                        elif nextDataType == "SM": 
+                        elif nextDataType == "TF": 
                             temp_point = Point("soil_temp")\
                                 .tag("deviceLocation", location)\
                                 .field("value", float(iPart))\
