@@ -5,7 +5,6 @@ from datetime import datetime
 
 import board
 import busio
-import qwiic_soil_moisture_sensor
 import serial
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
@@ -19,7 +18,6 @@ location = "garden-base-beta"
 
 configParser = configparser.ConfigParser()
 
-mySoilSensor = qwiic_soil_moisture_sensor.QwiicSoilMoistureSensor()
 serialPort = serial.Serial(
  port='/dev/ttyACM0',
  baudrate = 9600,
@@ -32,39 +30,21 @@ serialPort = serial.Serial(
 client = InfluxDBClient(url="http://es:8086", token=token)
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
-def initSoilMoistureSensor():
-    if mySoilSensor.is_connected == False:
-        print("The Qwiic Soil Moisture Sensor device isn't connected to the system. Please check your connection", \
-        file=sys.stderr)
-        return
-
-    mySoilSensor.begin()
-
 if __name__ == '__main__':
     try:
-        initSoilMoistureSensor()
         while True:
             soil_temperature = serialPort.readline()
-            # throw away leftovers
-            #serialPort.reset_input_buffer()
             print(soil_temperature)
 
-            mySoilSensor.read_moisture_level()
-            soil_moisture = mySoilSensor.level
-            print (soil_moisture)
-            mySoilSensor.led_on()
-            time.sleep(0.5)
-            mySoilSensor.led_off()
-
-            moist_point = Point("soil_moisture")\
-                .tag("deviceLocation", location)\
-                .field("value", soil_moisture)\
-                .time(datetime.utcnow(), WritePrecision.NS)
-            soiltemp_point = Point("soil_temperature")\
-                .tag("deviceLocation", location)\
-                .field("tempF", soil_temperature)\
-                .time(datetime.utcnow(), WritePrecision.NS)
-            time.sleep(0.5)
+            #moist_point = Point("soil_moisture")\
+            #    .tag("deviceLocation", location)\
+            #    .field("value", soil_moisture)\
+            #    .time(datetime.utcnow(), WritePrecision.NS)
+            #soiltemp_point = Point("soil_temperature")\
+            #    .tag("deviceLocation", location)\
+            #    .field("tempF", soil_temperature)\
+            #    .time(datetime.utcnow(), WritePrecision.NS)
+            time.sleep(1)
 
     except (KeyboardInterrupt, SystemExit) as exErr:
         print("\nEnding Example 1")
