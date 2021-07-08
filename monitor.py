@@ -33,7 +33,7 @@ write_api = client.write_api(write_options=SYNCHRONOUS)
 if __name__ == '__main__':
     try:
         while True:
-            soil_temperature = serialPort.readline()
+            soil_temperature = serialPort.readline().decode('utf-8')
             soil_temperature = soil_temperature.replace("b'","")
             soil_temperature = soil_temperature.replace("\r\n'","")
  
