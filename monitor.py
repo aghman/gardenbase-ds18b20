@@ -36,7 +36,7 @@ if __name__ == '__main__':
             soil_temperature = serialPort.readline().decode('utf-8')
             soil_temperature = soil_temperature.replace("b'","")
             soil_temperature = soil_temperature.replace("\r\n'","")
-            if not soil_temperature:
+            if soil_temperature:
                 print(soil_temperature)
 
             #moist_point = Point("soil_moisture")\
