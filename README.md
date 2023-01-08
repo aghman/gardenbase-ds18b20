@@ -1,2 +1,5 @@
-# gardenbase-snakeberry
-Python application that is intended to run on a Raspberry pi and listen to a connected Arduino device over the serial port. Arduino device reports soil temperature. Also measures soil moisture via connected soil moisture sensor. All data goes to InfluxDB. 
+# gardenbase-ds18b20
+
+## Overview
+
+This repo contains both the Arduino microcontroller code and Go code to read temperature measurements from one or more ds18b20 temperature sensors and publish it via MQTT.  The Arduino code outputs the readings over the serial console.  
